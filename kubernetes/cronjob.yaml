@@ -1,0 +1,29 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  labels:
+    app: myapp-nlb-sync
+  name: myapp-nlb-sync
+  namespace: kube-system
+spec:
+  schedule: "*/5 * * * *"
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - image: newtondev/k8s-aws-nlb-target-cloner:1.0.0
+              name: app
+              command: ['node', 'src/app.js']
+              imagePullPolicy: IfNotPresent
+              env:
+                - name: AWS_REGION
+                  value: <REGION>
+                - name: AWS_AVAILABILITY_ZONE
+                  value: <AVAILABILITY_ZONE>
+                - name: AWS_SRC_TG_ARN
+                  value: <ARN_OF_SOURCE_TARGETGROUP>
+                - name: AWS_DEST_TG_ARN
+                  value: <ARN_OF_TARGET_TARGETGROUP>

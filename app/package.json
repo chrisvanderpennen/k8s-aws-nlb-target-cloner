@@ -1,0 +1,16 @@
+{
+    "name": "aws-nlb-target-cloner",
+    "version": "1.0.0",
+    "description": "Clones the targets of an NLB in a specific AWS AZ.",
+    "main": "app.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Craig Newton <newtondev@gmail.com>",
+    "license": "MIT",
+    "dependencies": {
+      "aws-sdk": "^2.437.0",
+      "dotenv": "^7.0.0"
+    }
+  }
+  
