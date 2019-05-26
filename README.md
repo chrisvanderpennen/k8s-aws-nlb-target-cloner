@@ -4,6 +4,23 @@ Copies the target instances for an AWS AZ from a reference NLB Target Group to a
 
 *Use Case:* Whitelisting a static IP address for zero rated data. All requests are routed to Kubernetes NGINX Ingress Controller.
 
+Ensure that your Kubernetes cluster has the following IAM policy applied:
+```
+"Version": "2012-10-17",
+"Statement": [
+    {
+      "Action": [
+        "elasticloadbalancing:DescribeTargetHealth",
+        "elasticloadbalancing:RegisterTargets",
+        "elasticloadbalancing:DeregisterTargets",
+        "ec2:DescribeInstanceStatus"
+      ],
+      "Resource": "*",
+      "Effect": "Allow"
+    }
+]
+```
+
 1. Create an NLB and assign a subnet to an AZ and assign the EIP to that subnet.
 2. Create a Target Group assigned to your VPC, ensure that Target Type is set to Instance, the Protocol is set to HTTP, and the Port is set to 80.
 3. Add a new listener to the NLB you created with TCP port 80 and set the Action to Forward to the Target Group you created in step #2.
