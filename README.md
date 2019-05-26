@@ -36,15 +36,15 @@ spec:
                   value: eu-west-1
                 - name: AWS_AVAILABILITY_ZONE
                   value: eu-west-1a
-                - name: AWS_DEST_TG_ARN
-                  value: arn:aws:elasticloadbalancing:eu-west-1:676182226267:targetgroup/zero-rated-data/ca38a5d4fe1e5fed
                 - name: AWS_SRC_TG_ARN
                   value: arn:aws:elasticloadbalancing:eu-west-1:676182226267:targetgroup/k8s-tg-238c3521126c3-80-30603/3d2d23a6bcb7009a
+                - name: AWS_DEST_TG_ARN
+                  value: arn:aws:elasticloadbalancing:eu-west-1:676182226267:targetgroup/zero-rated-data/ca38a5d4fe1e5fed
 ```
 ---
 | Environment Variable | Description | Example |
 | --- | --- | ---|
 | `AWS_REGION` | The AWS region to create the resources in. | `eu-west-1` |
 | `AWS_AVAILABILITY_ZONE` | The AWS availability zone of the Target Group subnet | `eu-west-1a` |
-| `AWS_DEST_TG_ARN` | The ARN of the Target Group you want to apply the changes to. | `arn:aws:elasticloadbalancing:eu-west-1:376181236267:targetgroup/mcm-test/da48a5c4fe1f5eed` |
-| `AWS_SRC_TG_ARN` | The ARN of the Target Group instances you want to clone from. Usually beloning to the NGINX Ingress Controller you want to forward requests to. | `arn:aws:elasticloadbalancing:eu-west-1:376181236267:targetgroup/k8s-tg-558b3533125b3-80-30603/7d2d43a7bff7009a` |
+| `AWS_SRC_TG_ARN` | The ARN of the Target Group instances you want to clone from. Usually beloning to the NGINX Ingress Controller you want to forward requests to. | `arn:aws:elasticloadbalancing:eu-west-1:676182226267:targetgroup/k8s-tg-238c3521126c3-80-30603/3d2d23a6bcb7009a` |
+| `AWS_DEST_TG_ARN` | The ARN of the Target Group you want to apply the changes to. | `arn:aws:elasticloadbalancing:eu-west-1:676182226267:targetgroup/zero-rated-data/ca38a5d4fe1e5fed` |
