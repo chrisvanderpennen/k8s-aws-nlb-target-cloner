@@ -99,7 +99,7 @@ async function describeInstanceStatus(instanceIds) {
 async function getRegisterInstances(referenceTargets) {
   const instanceIds = referenceTargets.map((target) => target.Id);
   const instanceStatus = await describeInstanceStatus(instanceIds);
-  const instances = instanceStatus.InstanceStatuses.filter((instance) => instance.AvailabilityZone === process.env.AWS_AVAILABILITY_ZONE).map((target) => target.InstanceId);
+  const instances = instanceStatus.InstanceStatuses.map((target) => target.InstanceId);
 
   const registerInstances = [];
   for (let instance of instances) {
@@ -174,11 +174,6 @@ function checkVars() {
     return false;
   }
 
-  if (!process.env.AWS_AVAILABILITY_ZONE) {
-    console.error('[error] AWS_AVAILABILITY_ZONE has no value.');
-    return false;
-  }
-
   if (!process.env.AWS_DEST_TG_ARN) {
     console.error('[error] AWS_DEST_TG_ARN has no value.');
     return false;
@@ -202,7 +197,6 @@ async function main() {
   }
 
   console.log(`[main] AWS_REGION: ${process.env.AWS_REGION}`);
-  console.log(`[main] AWS_AVAILABILITY_ZONE: ${process.env.AWS_AVAILABILITY_ZONE}`);
   console.log(`[main] AWS_DEST_TG_ARN: ${process.env.AWS_DEST_TG_ARN}`);
   console.log(`[main] AWS_SRC_TG_ARN: ${process.env.AWS_SRC_TG_ARN}`);
   

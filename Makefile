@@ -1,5 +1,5 @@
-VERSION=1.0.0
-IMAGE_NAME='newtondev/k8s-aws-nlb-target-cloner'
+VERSION=1.0.1
+IMAGE_NAME='cvanderpennen/k8s-aws-nlb-target-cloner'
 
 # Build the container
 build: 
